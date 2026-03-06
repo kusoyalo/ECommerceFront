@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ProductTable from './Product.jsx'
 import './Login.css';
 
 export default function LoginPage() {
@@ -51,37 +52,42 @@ export default function LoginPage() {
     }
     
     return (
-        <div className="container">
-            <form className="form" onSubmit={handleSubmit}>
-                <h2 className="title">登入</h2>
-        
-                <div className="inputGroup">
-                <label>帳號</label>
-                <input
-                    type="text"
-                    name="account"
-                    value={formData.account}
-                    onChange={handleChange}
-                    className="input"
-                    placeholder="請輸入帳號"
-                    required
-                />
-                </div>
+        <>
+            <div className="container">
+                <form className="form" onSubmit={handleSubmit}>
+                    <h2 className="title">登入</h2>
+            
+                    <div className="inputGroup">
+                    <label>帳號</label>
+                    <input
+                        type="text"
+                        name="account"
+                        value={formData.account}
+                        onChange={handleChange}
+                        className="input"
+                        placeholder="請輸入帳號"
+                        required
+                    />
+                    </div>
 
-                <div className="inputGroup">
-                <label>密碼</label>
-                <input
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    className="input"
-                    placeholder="請輸入密碼"
-                    required
-                />
-                </div>
-                <button type="submit" className="button">登入系統</button>
-            </form>
-        </div>
+                    <div className="inputGroup">
+                    <label>密碼</label>
+                    <input
+                        type="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        className="input"
+                        placeholder="請輸入密碼"
+                        required
+                    />
+                    </div>
+                    <button type="submit" className="button">登入系統</button>
+                </form>
+            </div>
+            <div>
+                <ProductTable queryType="default" />
+            </div>
+        </>
     );
 }
