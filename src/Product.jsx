@@ -1,12 +1,18 @@
 import { useState, useEffect } from 'react';
 import './Product.css';
 
-export default function ProductTable({ queryType }) {
+export default function ProductTable({ queryType, productId, productName, lastModifiedTimeStart, lastModifiedTimeEnd,changeFlag }) {
     const [products, setProducts] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        if(queryType === 'query' && productId == null){
+            setLoading(false);
+            setProducts([]);
+            return;
+        }
+
         async function queryProduct() {
             let URL = '';
             let requestObject = {};
@@ -18,8 +24,17 @@ export default function ProductTable({ queryType }) {
                 };
             }
             else if (queryType === 'query') {
-                URL = '';
-                requestObject = {};
+                const params = new URLSearchParams({
+                    productId: productId || '',
+                    productName: productName || '',
+                    lastModifiedTimeStart: lastModifiedTimeStart || '',
+                    lastModifiedTimeEnd: lastModifiedTimeEnd || ''
+                });
+                
+                URL = `https://localhost:7225/api/product/queryProduct?${params.toString()}`;
+                requestObject = {
+                    method: 'GET',
+                };
             }
 
             try {
@@ -42,14 +57,14 @@ export default function ProductTable({ queryType }) {
         }
 
         queryProduct();
-    },[]);
+    },[queryType, productId, productName, lastModifiedTimeStart, lastModifiedTimeEnd,changeFlag]);
 
     if (loading) {return <div>資料載入中...</div>;}
     if (error) {return <div>發生錯誤：{error}</div>;}
 
     return (
         <div style={{ padding: '20px' }}>
-            <h2>商品列表，只列出以商品代碼排序最大的前3筆</h2>
+            <h2>商品列表{queryType === 'default' ? '，只列出以商品代碼排序最大的前3筆' : ''}</h2>
             <table className="table-container">
                 <thead>
                     <tr className="table-row">
@@ -65,7 +80,20 @@ export default function ProductTable({ queryType }) {
                     products.map((product) => (
                     <tr key={product.productId} className="table-row">
                         <td>{product.productId}</td>
-                        <td>{product.productName}</td>
+                        <td>
+                            {queryType === 'query' ? (
+                                <a 
+                                    href={`/productDetail/${product.productId}`} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    className="link-text"
+                                >
+                                    {product.productName}
+                                </a>
+                            ) : (
+                                product.productName
+                            )}
+                        </td>
                         <td>{product.productCategory}</td>
                         <td>{product.status}</td>
                         <td>{product.lastModifiedTime}</td>
