@@ -7,9 +7,11 @@ import ProductQueryPage from './ProductQuery.jsx'
 import ProductDetailPage from './ProductDetail.jsx'
 import ProductCreatePage from './ProductCreate.jsx'
 import ErrorPage from './Error.jsx'
+import { Toaster } from 'react-hot-toast';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <Toaster position="top-right" reverseOrder={false} />
     <BrowserRouter>
       <Routes>
         {/* 設定網址與元件的對應關係 */}

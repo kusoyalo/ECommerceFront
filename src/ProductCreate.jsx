@@ -1,6 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import { useState } from 'react';
 import './ProductCreate.css';
+import { toast } from 'react-hot-toast';
 
 export default function ProductCreatePage() {
     const [searchParams] = useSearchParams();
@@ -27,7 +28,7 @@ export default function ProductCreatePage() {
         if (file) {
             // 檢查檔案類型是否為圖片
             if (!file.type.startsWith('image/')) {
-                alert('請上傳圖片檔案！');
+                toast.error('請上傳圖片檔案');
                 return;
             }
 
@@ -81,10 +82,10 @@ export default function ProductCreatePage() {
             });
 
             if (response.ok) {
-                alert('新增完成');
+                toast.success('新增完成');
             } else {
                 const errorData = await response.json();
-                alert('新增失敗：' + errorData.message);
+                toast.error('新增失敗：' + errorData.message);
             }
         } catch (error) {
             console.error('錯誤：', error);

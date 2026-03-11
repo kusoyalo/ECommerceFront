@@ -42,7 +42,7 @@ export default function HomePage() {
             height: '100vh', 
             backgroundColor: '#f5f5f5' // 淺灰背景
         }}>
-            {/* 1. 頂部導航欄 (確保它在最上面) */}
+            {/* 頂部導航欄 (確保它在最上面) */}
             <div style={{
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -72,7 +72,7 @@ export default function HomePage() {
                 </button>
             </div>
 
-            {/* 2. 下方按鈕區 (確保置中且不超過畫面) */}
+            {/* 下方按鈕區 (確保置中且不超過畫面) */}
             <div style={{ 
                 flex: 1, 
                 display: 'flex', 

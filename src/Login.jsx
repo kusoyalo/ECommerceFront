@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProductTable from './Product.jsx'
 import './Login.css';
+import { toast } from 'react-hot-toast';
 
 export default function LoginPage() {
     const [formData, setFormData] = useState({
@@ -36,7 +37,7 @@ export default function LoginPage() {
                 console.log('完成：', data);
 
                 if(data.result === 'fail') {
-                    alert(data.message);
+                    toast.error(data.message);
                     return;
                 }
                 navigate('/home', { replace: true, 
