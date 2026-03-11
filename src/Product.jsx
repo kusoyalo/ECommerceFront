@@ -86,7 +86,6 @@ export default function ProductTable({ queryType, productId, productName, lastMo
                                     href={`/productDetail/${product.productId}`} 
                                     target="_blank" 
                                     rel="noopener noreferrer" 
-                                    className="link-text"
                                 >
                                     {product.productName}
                                 </a>

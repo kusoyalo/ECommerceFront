@@ -6,7 +6,7 @@
 label { font-weight: bold; margin-bottom: 8px; color: #555; }
 .required { color: red; }
 
-input, select, textarea { padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; }
+input, select { padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; }
 
 .file-input-hidden {
     width: 0.1px;

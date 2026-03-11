@@ -17,7 +17,7 @@ export default function ProductCreatePage() {
         stock: '',
         status: '1',
         imageFile: null,
-        lastModifyBy: JSON.parse(userJson).account
+        lastModifiedBy: JSON.parse(userJson).account
     });
 
     const [preview, setPreview] = useState(null);
@@ -74,6 +74,7 @@ export default function ProductCreatePage() {
         formDataToSend.append('stock', formData.stock);
         formDataToSend.append('status', formData.status);
         formDataToSend.append('imageFile', formData.imageFile);
+        formDataToSend.append('lastModifiedBy', formData.lastModifiedBy);
 
         try {
             const response = await fetch('https://localhost:7225/api/product/productCreate', {

@@ -6,6 +6,9 @@ import HomePage from './Home.jsx'
 import ProductQueryPage from './ProductQuery.jsx'
 import ProductDetailPage from './ProductDetail.jsx'
 import ProductCreatePage from './ProductCreate.jsx'
+import AccountManagePage from './AccountManage.jsx'
+import AccountManageCreatePage from './accountManageCreate.jsx'
+import AccountManageUpdatePage from './AccountManageUpdate.jsx'
 import ErrorPage from './Error.jsx'
 import { Toaster } from 'react-hot-toast';
 
@@ -22,6 +25,9 @@ createRoot(document.getElementById('root')).render(
         <Route path="/productQuery" element={<ProductQueryPage/>} />
         <Route path="/productDetail/:productId" element={<ProductDetailPage/>} />
         <Route path="/productCreate" element={<ProductCreatePage/>} />
+        <Route path="/accountManage" element={<AccountManagePage/>} />
+        <Route path="/accountManageCreate" element={<AccountManageCreatePage/>}/>
+        <Route path="/accountManageUpdate/:account" element={<AccountManageUpdatePage/>}/>
         <Route path="/error" element={<ErrorPage/>} />
         {/* 404 頁面處理 */}
         <Route path="*" element={<ErrorPage/>} />
