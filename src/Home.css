@@ -1,37 +1,100 @@
-.container {
-    padding: 20px;
-    text-align: center;
+* {
+  box-sizing: border-box; /* 防止 padding 撐開寬度 */
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* 禁止左右捲動 */
+}
+
+/* 外層大容器：強制由上而下排列 */
+.menu-page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* 撐滿螢幕高度 */
+    background-color: #f8f9fa;
+}
+
+/* 頂部資訊列：固定在最上方 */
+.top-nav {
+    display: flex;
+    justify-content: space-between; /* 左右排開 */
+    align-items: center;
+    padding: 15px 30px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    width: 100%; /* 寬度填滿 */
+}
+
+.user-status {
+    font-size: 16px;
+    color: #333;
+}
+
+.divider-line {
+    margin: 0 15px;
+    color: #ddd;
+}
+
+.admin-text {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.logout-btn-sm {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* 下方按鈕區：置中顯示 */
+.content-area {
+    flex: 1; /* 自動填滿剩餘空間 */
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: flex-start; /* 讓內容靠上方，不要死板的在螢幕正中間 */
+    padding-top: 50px; /* 離頂部導航欄一段距離 */
 }
 
 .menu-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    max-width: 400px;
-    margin: 0 auto;
+    grid-template-columns: 1fr 1fr; /* 二欄佈局 */
+    gap: 20px;
+    width: 100%;
+    max-width: 500px; /* 限制選單最大寬度 */
 }
 
-.menu-item {
-    padding: 20px;
+.feature-card {
+    padding: 30px;
     border: none;
     border-radius: 8px;
     color: white;
-    font-size: 16px;
+    font-size: 18px;
+    transition: 0.3s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.menu-item {
+    /* 這裡一定要給背景色，否則會變透明/淺灰 */
+    background-color: #007bff; 
+    color: white !important; /* 強制文字為白色 */
+    padding: 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     transition: 0.3s;
 }
 
-/* 額外加入hover效果，讓選單更生動 */
-.menu-item:not(:disabled):hover {
-    filter: brightness(1.1);
-    transform: translateY(-2px);
-}
-
-.logout-button {
-    margin-top: 30px;
-    padding: 10px 20px;
-    cursor: pointer;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 5px;
+/* 權限不足的按鈕顏色 */
+.menu-item:disabled {
+    background-color: #ccc !important;
+    cursor: not-allowed;
 }
